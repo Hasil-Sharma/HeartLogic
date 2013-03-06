@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+
+body
+{
+	position:relative;
+	background:url(../images/tile.jpg);
+	border:0 none;
+	font-size:100%;
+	margin:0px auto;
+	padding:0px;
+	border:0;
+	outline:0;
+	vertical-align:top;
+	font: normal 73%/1.6em 'Trebuchet MS', Tahoma, sans-serif;
+}
