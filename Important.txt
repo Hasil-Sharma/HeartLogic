@@ -1,0 +1,9 @@
+Whenever an individual request is given , it can be fullfilled either by blood bank or hospital and in some cases by volunteers.
+
+Sending sms to volunteers should be in the hands of hospital not in the individual
+
+An fullfill confirmation will be given by hospital and in case some volunteer who is registered on website has given blood then his or her details must be entered and in cases where a non registered person had fullfilled request , his or her id proof shall be entered.
+
+So another model must be defined "AnonymousFulfilments" this model will save data in case, a non registered volunteer had donated blood.
+
+I m getting a bit confused about the modelfields to used, shall I also add the same functionality in the admin-site as we are going to give user in interface.
