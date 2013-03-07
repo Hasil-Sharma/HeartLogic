@@ -4,7 +4,7 @@
 body
 {
 	position:relative;
-	background:url(../images/tile.jpg);
+	background:#000;
 	border:0 none;
 	font-size:100%;
 	margin:0px auto;
@@ -13,4 +13,137 @@ body
 	outline:0;
 	vertical-align:top;
 	font: normal 73%/1.6em 'Trebuchet MS', Tahoma, sans-serif;
+	color:#CCC;
+	width:100%;
+	max-width:1000px;
+	min-width:650px;
+}
+
+.heading
+{
+	height:150px;
+	width:100%;
+}
+.logo
+{
+	background-image:url(../images/logo.jpg);
+	width:191px;
+	height:124px;
+	float:left;
+}
+.menu
+{
+	position:relative;
+	height:37px;
+	width:372px;
+	background-image:url(../images/menubar.jpg);
+	float:right;
+}
+.menu ul
+{
+	list-style-image:none;
+	padding-top:10px;
+	list-style:none;
+	margin:0 1px 0 0;
+	display:inline-block;
+}
+.menu ul li
+{
+	float:left;
+	padding-right:15px;
+}
+.menu ul li a
+{
+	color:#FFF;
+	font-size:20px;
+	font-weight:bold;
+	text-decoration:none;
+
+}
+.menu ul li a:hover
+{
+	color:#999;
+}
+
+.tagline
+{
+	float:right;
+	margin-right:0px;
+	background-image:url(../images/heading.png);
+	height:74px;
+	width:425px;
+}
+
+.footer
+{
+	position:relative;
+	width:100%;
+	height:50px;
+	font-size:14px;
+	text-align:center;
+	padding-top:50px;
+}
+
+.content
+{
+	width:100%;
+	min-height:370px;
+}
+.slideshow
+{
+	float:left;
+	width:250px;
+	height:350px;
+	background-color:#FFF;
+	padding-right:10px;
+
+}
+.textarea
+{
+	padding-left:10px;
+	padding-right:10px;
+	float:left;
+	height:370px;
+	min-width:150px;
+}
+.app
+{
+	padding-left:10px;
+	float:right;
+	width:200px;
+	height:350px;
+	background-color:#FFF;
+
+}
+.widgets
+{
+	width:100%;
+	min-height:50px;
+}
+.link
+{
+	float:left;
+	width:300px;
+	padding-left:10px;
+	padding-right:10px;
+}
+.link a
+{
+	text-decoration:underline;
+	color:#CCC;
+}
+.link a:hover
+{
+	font-weight:bold;
+}
+.linkimage
+{
+	float:left;
+	width:45px;
+	height:67px;
+}
+.linktext
+{
+	float:right;
+	width:250px;
 }
