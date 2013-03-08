@@ -1,6 +1,4 @@
 from django.db import models
-from django.core.files.storage import FileSystemStorage
-import os
 
 # Create your models here.
     
@@ -13,3 +11,8 @@ class PagesContent(models.Model):
     
     class Meta:
         verbose_name_plural = "Pages Content"
+        
+class State(models.Model):
+    state = models.CharField(max_length=100)
+    def __unicode__(self):
+        return self.state

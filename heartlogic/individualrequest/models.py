@@ -1,5 +1,5 @@
 from django.db import models
-from bankshospitals.models import Hospital
+from bankshospitals.models import Bank
 # Create your models here.
 
 class IndividualRequest(models.Model):
@@ -8,6 +8,6 @@ class IndividualRequest(models.Model):
     uid = models.CharField(max_length = 50)
     name = models.CharField(max_length = 50)
     contact_no = models.CharField(max_length = 50)
-    hospital_where_required = models.OneToOneField(Hospital)#Hospital to be defined
+    hospital_where_required = models.OneToOneField(Bank)#Hospital to be defined
     individual_request_fullfilled = models.BooleanField(default = False)
     # fullfiled_by = models.OneToOneField()
