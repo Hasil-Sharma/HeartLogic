@@ -1,6 +1,7 @@
 from django.db import models
 from database.models import State
 # Create your models here.
+
 class Bank(models.Model):
 	uid = models.CharField(max_length=50)#This is a unique id for each and every hospital
 	type=models.IntegerField(default=0)#0 means bank
@@ -29,7 +30,7 @@ class Bank(models.Model):
 #	def __unicode__(self):
 #		return self.name
 
-class Camps(models.Model):
+class Camp(models.Model):
 	name = models.CharField(max_length = 50)
 	phone_no = models.IntegerField()
 	email_id = models.EmailField(blank = True)

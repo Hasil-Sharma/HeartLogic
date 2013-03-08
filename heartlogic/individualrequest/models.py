@@ -1,5 +1,5 @@
 from django.db import models
-from bankshospitals.models import Bank
+from bankhospital.models import Bank
 # Create your models here.
 
 class IndividualRequest(models.Model):

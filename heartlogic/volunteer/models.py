@@ -1,6 +1,6 @@
 from django.db import models
 from database.models import State
-from bloodgroups.models import BloodGroup 
+from bloodgroup.models import BloodGroup 
 # Create your models here.
 #TO BE DISPLAYE ON WEBSITE
 class Volunteer(models.Model):

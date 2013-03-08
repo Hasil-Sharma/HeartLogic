@@ -1,4 +1,7 @@
 from django.contrib import admin
-from request.models import *
+from request.models import Request
 
-admin.site.register(Request)
+class RequestAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Request, RequestAdmin)

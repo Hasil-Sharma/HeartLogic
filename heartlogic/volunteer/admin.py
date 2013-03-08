@@ -1,4 +1,7 @@
 from django.contrib import admin
-from volunteer.models import *
+from volunteer.models import Volunteer
 
-admin.site.register(Volunteer)
+class VolunteerAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Volunteer, VolunteerAdmin)
