@@ -1,0 +1,17 @@
+<html>
+	<title>Main Page</title>
+	<body>
+		{% if bank_form or bank_form %}
+			<p>Blood Bank Searcher</p>
+			<form action="" method = "post">
+				{% csrf_token %} 
+				{{ bank_form.as_p }}
+			<input type="submit" value = "Submit">
+			<p>Blood Camp Searcher</p>
+			<form action="" method = "post">
+				{% csrf_token %}
+				{{ camp_form.as_p }}
+			<input type="submit" value = "Submit">
+		{% endif %}
+	</body>
+</html>
