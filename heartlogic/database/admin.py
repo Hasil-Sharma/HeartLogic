@@ -8,4 +8,4 @@ class StateAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(PagesContent, PageAdmin)
-admin.site.register(State, StateAdmin)
+admin.site.register(State)

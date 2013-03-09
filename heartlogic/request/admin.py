@@ -4,4 +4,4 @@ from request.models import Request
 class RequestAdmin(admin.ModelAdmin):
     pass
 
-admin.site.register(Request, RequestAdmin)
+admin.site.register(Request)

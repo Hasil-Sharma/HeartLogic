@@ -3,7 +3,7 @@ from django.template import RequestContext
 from database.models import PagesContent
 #from django.http import HttpResponseRedirect, Http404
 from heartlogic.forms import BankSearchForm, CampSearchForm
-from bankhospital.models import Camp
+from bankhospital.models import Camp, Bank
 
 def standard():
     dictionary = {}
@@ -24,14 +24,16 @@ def mainpage(request):
         bank_form = BankSearchForm(request.POST)
         camp_form = CampSearchForm(request.POST)
         if bank_form.is_valid():
-            pass
-        
+            search_city = bank_form.cleaned_data['address_city']
+            dictionary['search_result'] = Bank.objects.filter(address_city__contains = search_city)
+            return render_to_response('mainpage.htm',dictionary,context_instance=RequestContext(request))
+
         elif camp_form.is_valid():
             search_city = camp_form.cleaned_data['address_city']
             dictionary['search_result'] = Camp.objects.filter(address_city__contains = search_city)
-            return render_to_response('mainpage.html',dictionary,context_instance=RequestContext(request))
+            return render_to_response('mainpage.htm',dictionary,context_instance=RequestContext(request))
             
     else:
         dictionary['bank_form'] = BankSearchForm()
         dictionary['camp_form'] = CampSearchForm()
-    return render_to_response('mainpage.html',dictionary,context_instance=RequestContext(request))
+    return render_to_response('mainpage.htm',dictionary,context_instance=RequestContext(request))

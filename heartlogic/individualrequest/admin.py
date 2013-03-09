@@ -4,4 +4,4 @@ from individualrequest.models import IndividualRequest
 class IndividualRequestAdmin(admin.ModelAdmin):
     pass
 
-admin.site.register(IndividualRequest, IndividualRequestAdmin)
+admin.site.register(IndividualRequest)
