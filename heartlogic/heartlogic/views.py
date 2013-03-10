@@ -4,7 +4,6 @@ from database.models import PagesContent
 #from django.http import HttpResponseRedirect, Http404
 from heartlogic.forms import SearchForm
 from bankhospital.models import Camp, Bank
-from datetime import datetime
 def standard():
     dictionary = {}
     return dictionary
