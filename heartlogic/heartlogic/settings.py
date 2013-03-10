@@ -94,6 +94,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    "account.middleware.LocaleMiddleware",
+    "account.middleware.TimezoneMiddleware",
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -127,6 +129,10 @@ INSTALLED_APPS = (
     'individualrequest',
     'request',
     'volunteer',
+    'account',
+    "pinax_theme_bootstrap",
+    "django_forms_bootstrap",
+    "pinax_theme_bootstrap_account",
 )
 
 # A sample logging configuration. The only tangible logging
@@ -157,3 +163,8 @@ LOGGING = {
         },
     }
 }
+TEMPLATE_CONTEXT_PROCESSORS = [
+    'django.contrib.auth.context_processors.auth',
+    "account.context_processors.account",
+]
+THEME_ACCOUNT_CONTACT_EMAIL = 'heartlogic@gmail.com'
