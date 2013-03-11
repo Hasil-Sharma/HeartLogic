@@ -1,0 +1,12 @@
+{% extends "base.htm" %}
+
+{% block content %}
+	{% if not posted %}
+	<form action = '.' method = 'post'>
+			{% csrf_token %}
+			{{ register_form.as_p }}
+	<input type = "submit" value = "register">
+	</form>
+	{% endif %}
+{% endblock %}
+

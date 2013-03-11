@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from database.models import PagesContent
 #from django.http import HttpResponseRedirect, Http404
-from heartlogic.forms import SearchForm
+from heartlogic.forms import SearchForm, RegisterForm
 from bankhospital.models import Camp, Bank
 def standard():
     dictionary = {}
@@ -51,3 +51,21 @@ def home(request, name = 'home'):
     dictionary['bank_form'] = SearchForm()
     dictionary['camp_form'] = SearchForm()
     return render_to_response('home.htm',dictionary,context_instance=RequestContext(request))
+
+def registerform(request):
+    dictionary = standard()
+    if request.method == 'POST':
+        register_data = RegisterForm(request.POST)
+        if register_data.is_valid():
+            clean_data = register_data.cleaned_data
+            dictionary = clean_data.copy()
+            return render_to_response('register.htm',dictionary,context_instance=RequestContext(request))
+        else:
+            dictionary['posted'] = False
+            dictionary['register_form'] = RegisterForm()
+            return render_to_response('register.htm',dictionary,context_instance=RequestContext(request))
+            
+    else:
+        dictionary['posted'] = False
+        dictionary['register_form'] = RegisterForm()
+        return render_to_response('register.htm',dictionary,context_instance=RequestContext(request))

@@ -108,7 +108,9 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.abspath("./media/templates/")
+    os.path.abspath("./media/templates/"),
+    os.path.abspath("./media/templates/registration"),
+    
 )
 
 INSTALLED_APPS = (
@@ -128,7 +130,7 @@ INSTALLED_APPS = (
     'individualrequest',
     'request',
     'volunteer',
-    'account',
+    'useraccounts',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -159,6 +161,6 @@ LOGGING = {
         },
     }
 }
-TEMPLATE_CONTEXT_PROCESSORS = [
+TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
-]
+)

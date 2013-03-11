@@ -3,8 +3,13 @@ from database.models import State
 # Create your models here.
 
 class Bank(models.Model):
+	TYPE_CHOICES = (
+				(None,'Make a choice'),
+				(0,'Bank'),
+				(1,'Hospital'),
+				)
 	uid = models.CharField(max_length=50)#This is a unique id for each and every hospital
-	type=models.IntegerField(default=0)#0 means bank
+	type=models.IntegerField(choices = TYPE_CHOICES, default=None)#0 means bank
 	name = models.CharField(max_length=50)
 	username = models.CharField(max_length=50)
 	phone_no = models.IntegerField()
