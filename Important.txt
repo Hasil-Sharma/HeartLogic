@@ -7,3 +7,7 @@ An fullfill confirmation will be given by hospital and in case some volunteer wh
 So another model must be defined "AnonymousFulfilments" this model will save data in case, a non registered volunteer had donated blood.
 
 I m getting a bit confused about the modelfields to used, shall I also add the same functionality in the admin-site as we are going to give user in interface.
+
+
+
+r
