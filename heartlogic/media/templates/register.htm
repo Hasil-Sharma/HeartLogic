@@ -2,11 +2,13 @@
 
 {% block content %}
 	{% if not posted %}
-	<form action = '.' method = 'post'>
+	<form action = '/save/' method = 'post'>
 			{% csrf_token %}
 			{{ register_form.as_p }}
 	<input type = "submit" value = "register">
 	</form>
+	{% else %}
+	<p> Done </p>
 	{% endif %}
 {% endblock %}
 

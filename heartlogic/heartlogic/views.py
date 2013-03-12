@@ -4,6 +4,7 @@ from database.models import PagesContent
 #from django.http import HttpResponseRedirect, Http404
 from heartlogic.forms import SearchForm, RegisterForm
 from bankhospital.models import Camp, Bank
+from useraccounts.view import make_user
 def standard():
     dictionary = {}
     return dictionary
@@ -54,18 +55,23 @@ def home(request, name = 'home'):
 
 def registerform(request):
     dictionary = standard()
-    if request.method == 'POST':
-        register_data = RegisterForm(request.POST)
-        if register_data.is_valid():
-            clean_data = register_data.cleaned_data
-            dictionary = clean_data.copy()
-            return render_to_response('register.htm',dictionary,context_instance=RequestContext(request))
+    dictionary['posted'] = False
+    dictionary['register_form'] = RegisterForm()
+    return render_to_response('register.htm',dictionary,context_instance=RequestContext(request))
+
+def registerinput(request):
+    dictionary = standard()
+    if request.method == "POST":
+        input_data = RegisterForm(request.POST)
+        if input_data.is_valid():
+            input_data_model = input_data.save() #saves the model into database without any modification
+            dictionary['username'] = input_data_model.username
+            dictionary['password'] = input_data.cleaned_data['password']
+            username = dictionary['username']
+            password = dictionary['password']
+            email = input_data.cleaned_data['email_id']
+            name = input_data_model.name
+            make_user(name, username,password,email)
+            return render_to_response('registrationcompleted.htm',dictionary,context_instance=RequestContext(request))
         else:
-            dictionary['posted'] = False
-            dictionary['register_form'] = RegisterForm()
-            return render_to_response('register.htm',dictionary,context_instance=RequestContext(request))
-            
-    else:
-        dictionary['posted'] = False
-        dictionary['register_form'] = RegisterForm()
-        return render_to_response('register.htm',dictionary,context_instance=RequestContext(request))
+            return render_to_response('404.htm',dictionary,context_instance=RequestContext(request))

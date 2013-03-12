@@ -9,5 +9,5 @@ class IndividualRequest(models.Model):
     name = models.CharField(max_length = 50)
     contact_no = models.CharField(max_length = 50)
     hospital_where_required = models.OneToOneField(Bank)#Hospital to be defined
-    individual_request_fullfilled = models.BooleanField(default = False)
-    # fullfiled_by = models.OneToOneField()
+    individual_request_fullfiled = models.BooleanField(default = False)
+    fullfiled_by = models.ForeignKey(Bank, related_name = 'individual_request_fullfiling_banks')

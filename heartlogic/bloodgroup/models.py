@@ -9,5 +9,5 @@ class BloodGroup(models.Model):
 	
 class Blood(models.Model):
 	bank = models.OneToOneField(Bank)
-	group = models.OneToOneField(BloodGroup)
+	group = models.TextField() #Pickled data
 	quantity = models.IntegerField()

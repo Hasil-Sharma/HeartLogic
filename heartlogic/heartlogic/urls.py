@@ -1,12 +1,13 @@
 from heartlogic import settings
 from django.conf.urls import patterns, include, url
 from database.views import *
-from heartlogic.views import result_b, result_c, notfound, home, writeup, registerform
+from heartlogic.views import result_b, result_c, notfound, home, writeup, registerform, registerinput
 from django.contrib import admin
 import useraccounts.urls
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^save/',registerinput),                   
     url(r'^accounts/', include(useraccounts.urls)),
     url(r'^$', home, {}),
     url(r'^result_b/$', result_b),
