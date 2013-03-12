@@ -2,10 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Heart Logic</title>
+<title>Heart Logic: {% block title %}{% endblock %}</title>
 
 <link rel="shortcut icon" href="favicon.ico"  />
 <link rel="stylesheet" type="text/css" media="screen" href="/static/css/base.css" />
+
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/galleria-1.2.9.min.js"></script>
+<script type="text/javascript">
+    $(window).load(function() {
+  $('.flexslider').flexslider({
+    animation: "slide"
+  });
+});
+</script>
 <script src="/static/js/jquery.js"></script>
 </head>
 <body>
@@ -14,24 +24,27 @@
     </div>
     <div class="menu">
     	<ul>
-            <li><a href="/">Home</a></li>
+            <li><a href="/home">Home</a></li>
             <li><a href="/accounts/login">Login</a></li>
             <li><a href="/faq">FAQs</a></li>
-            <li><a href="/contact">Contact Us</a></li>
-            <li><a href="/register/">Register</a></li>
+            <li><a href="/contact_us">Contact Us</a></li>
        	</ul>
         <br /><br /><br />
         <div class="tagline">
         </div>
     </div>
 </div>
-<br/>
-{% autoescape off %}
-{% block content %}
-{% endblock %}
-{% endautoescape %}
+<br />
+<div class="content">
+{% autoescape off%}
+        {% block content %}
+
+ {% endblock %}
+        {% endautoescape %}
+</div>
 <div class="footer">
-    &copy;Copyright 2013 BITS Pilani
+	&copy; Copyright 2013 BITS Pilani
 </div>
 </body>
+
 </html>

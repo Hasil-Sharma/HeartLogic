@@ -14,7 +14,7 @@ def profile(request):
     dictionary['user_name'] = request.user.username
     return render_to_response('interface/profile.htm',dictionary)
 
-def make_user(name, us, psw, mail):
-    user = User.objects.create_user(firstname = name, username=us, email=mail, password=psw)
+def make_user(us, psw, mail):
+    user = User.objects.create_user(username=us, email=mail, password=psw)
     user.is_staff = False
     user.save

@@ -114,7 +114,7 @@ body
 	padding-left:10px;
 	padding-right:10px;
 	float:left;
-	/*height:370px;*/
+	height:370px;
 	min-width:200px;
 	max-width:500px;
 	background-image:url( ../images/content_bg.jpg);
@@ -207,6 +207,7 @@ body
 	border-radius: 15px;
 	-webkit-transition-property: background,color;
 	-webkit-transition-duration: 0.8s;
+	
 }
 .button_login:hover
 {

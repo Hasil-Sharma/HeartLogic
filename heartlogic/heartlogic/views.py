@@ -9,10 +9,10 @@ def standard():
     dictionary = {}
     return dictionary
 
-def writeup(request, name = 'home'):
-    dictionary = standard()
-    dictionary['writeup']=PagesContent.objects.get(link=name).content
-    return dictionary
+#def writeup(request, name = 'home'):
+#    dictionary = standard()
+#    dictionary['writeup']=PagesContent.objects.get(link=name).content
+#    return dictionary
 
 def result_b(request):
     dictionary = standard()
@@ -48,10 +48,11 @@ def notfound(request):
     return render_to_response('404.htm',dictionary,context_instance=RequestContext(request))
 
 def home(request, name = 'home'):
-    dictionary = writeup(request,name)
+    dictionary = standard()
+    dictionary['writeup']=PagesContent.objects.get(link=name)
     dictionary['bank_form'] = SearchForm()
     dictionary['camp_form'] = SearchForm()
-    return render_to_response('home.htm',dictionary,context_instance=RequestContext(request))
+    return render_to_response('content.htm',dictionary,context_instance=RequestContext(request))
 
 def registerform(request):
     dictionary = standard()
@@ -71,7 +72,7 @@ def registerinput(request):
             password = dictionary['password']
             email = input_data.cleaned_data['email_id']
             name = input_data_model.name
-            make_user(name, username,password,email)
+            make_user(username,password,email)
             return render_to_response('registrationcompleted.htm',dictionary,context_instance=RequestContext(request))
         else:
             return render_to_response('404.htm',dictionary,context_instance=RequestContext(request))
