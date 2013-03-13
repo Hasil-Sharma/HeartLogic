@@ -5,7 +5,6 @@ from django.http import HttpResponse
 #from django.http import HttpResponseRedirect, Http404
 from heartlogic.forms import SearchForm, RegisterForm, VolunteerForm
 from bankhospital.models import Camp, Bank
-from useraccounts.view import make_user
 from volunteer.models import Volunteer 
 from django.contrib.auth.forms import UserCreationForm
 def standard():
@@ -61,22 +60,19 @@ def registerform(request):
     dictionary = standard()
     if request.method == "POST":
         input_data = RegisterForm(request.POST)
+        input_data_u = UserCreationForm(request.POST)
         dictionary['input_data'] = input_data
-        print input_data
-        if input_data.is_valid():
-            print "yo"
-            #input_data_model = input_data.save(commit = False)
-            #input_data_model.username_b = input_data.clean_username()
-            dictionary['username'] = input_data.clean_username()
-            dictionary['password'] = input_data.clean_password2()
-            username = dictionary['username']
-            password = dictionary['password']
-            #input_data_model.save()
-            email = input_data.cleaned_data['email_id']
-            #make_user(username,password,email)
-            
+        dictionary['input_data_u'] = input_data_u
+        if input_data.is_valid() and input_data_u.is_valid():
+            input_data_u.save()
+            input_data_model = input_data.save(commit = False)
+            input_data_model.username_b =  input_data_u.cleaned_data['username']
+            input_data_model.save()
+            dictionary['success'] = True
+            dictionary['username'] = input_data_u.cleaned_data['username']
     else:
         dictionary['input_data'] = RegisterForm()
+        dictionary['input_data_u'] = UserCreationForm()
     return render_to_response('register.htm',dictionary,context_instance=RequestContext(request))
 
 def volunteerform(request):

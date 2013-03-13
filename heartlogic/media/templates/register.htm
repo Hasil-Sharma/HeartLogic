@@ -1,12 +1,20 @@
 {% extends "base.htm" %}
 
 {% block content %}
-	{% if not posted %}
-	{{dummy}}
+{% if not success %}
 	<form action = '' method = 'post'>
 			{% csrf_token %}
 			<table>
 			{% for form in input_data %}
+				<tr>
+					<td>{{form.label}}</td>
+					<td>{{form}}</td>
+					{% if form.errors %}
+						<td>{{form.errors}}</td>
+					{% endif %}
+				</tr>
+			{% endfor %}
+			{% for form in input_data_u %}
 				<tr>
 					<td>{{form.label}}</td>
 					<td>{{form}}</td>
@@ -20,7 +28,7 @@
 		</table>
 	</form>
 	{% else %}
-	<p> Done </p>
-	{% endif %}
+	<p>You account has been created with username = {{username}}</p>
+{% endif %}
 {% endblock %}
 
