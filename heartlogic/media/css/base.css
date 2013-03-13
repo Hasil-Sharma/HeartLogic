@@ -114,9 +114,10 @@ body
 	padding-left:10px;
 	padding-right:10px;
 	float:left;
-	/*height:370px;*/
-	min-width:200px;
-	max-width:500px;
+	height:370px;
+	/*min-width:200px;*/
+	/*max-width:500px; */
+	width: 500px;
 	background-image:url( ../images/content_bg.jpg);
 	font-size: 13px;
 }

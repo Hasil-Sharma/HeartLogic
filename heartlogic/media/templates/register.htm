@@ -2,10 +2,22 @@
 
 {% block content %}
 	{% if not posted %}
-	<form action = '/save/' method = 'post'>
+	{{dummy}}
+	<form action = '' method = 'post'>
 			{% csrf_token %}
-			{{ register_form.as_p }}
-	<input type = "submit" value = "register">
+			<table>
+			{% for form in input_data %}
+				<tr>
+					<td>{{form.label}}</td>
+					<td>{{form}}</td>
+					<td>{{form.span}}</td>
+					{% if form.errors %}
+						<td>{{form.errors}}</td>
+					{% endif %}
+				</tr>
+			{% endfor %}
+			<tr><td><input type = "submit" value = "register"></td></tr>
+		</table>
 	</form>
 	{% else %}
 	<p> Done </p>

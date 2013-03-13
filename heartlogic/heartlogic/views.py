@@ -1,10 +1,13 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from database.models import PagesContent
+from django.http import HttpResponse
 #from django.http import HttpResponseRedirect, Http404
-from heartlogic.forms import SearchForm, RegisterForm
+from heartlogic.forms import SearchForm, RegisterForm, VolunteerForm
 from bankhospital.models import Camp, Bank
 from useraccounts.view import make_user
+from volunteer.models import Volunteer 
+from django.contrib.auth.forms import UserCreationForm
 def standard():
     dictionary = {}
     return dictionary
@@ -56,23 +59,46 @@ def home(request, name = 'home'):
 
 def registerform(request):
     dictionary = standard()
-    dictionary['posted'] = False
-    dictionary['register_form'] = RegisterForm()
-    return render_to_response('register.htm',dictionary,context_instance=RequestContext(request))
-
-def registerinput(request):
-    dictionary = standard()
     if request.method == "POST":
         input_data = RegisterForm(request.POST)
+        dictionary['input_data'] = input_data
+        print input_data
         if input_data.is_valid():
-            input_data_model = input_data.save() #saves the model into database without any modification
-            dictionary['username'] = input_data_model.username
-            dictionary['password'] = input_data.cleaned_data['password']
+            print "yo"
+            #input_data_model = input_data.save(commit = False)
+            #input_data_model.username_b = input_data.clean_username()
+            dictionary['username'] = input_data.clean_username()
+            dictionary['password'] = input_data.clean_password2()
             username = dictionary['username']
             password = dictionary['password']
+            #input_data_model.save()
             email = input_data.cleaned_data['email_id']
-            name = input_data_model.name
-            make_user(username,password,email)
-            return render_to_response('registrationcompleted.htm',dictionary,context_instance=RequestContext(request))
+            #make_user(username,password,email)
+            
+    else:
+        dictionary['input_data'] = RegisterForm()
+    return render_to_response('register.htm',dictionary,context_instance=RequestContext(request))
+
+def volunteerform(request):
+    dictionary = standard()
+    if request.method == "POST":
+        input_data = VolunteerForm(request.POST)
+        dictionary['input_data'] = input_data
+        if input_data.is_valid():
+            try:
+                Volunteer.objects.get(uid = input_data.cleaned_data['uid'])
+                dictionary['registered'] = True
+                return render_to_response('registration/volunteer.htm', dictionary, context_instance=RequestContext(request))
+            except:
+                input_data.save()
+                print "saved"
+                print input_data.cleaned_data.values()
+                dictionary['success'] = True
+                return render_to_response('registration/volunteer.htm', dictionary, context_instance=RequestContext(request))
         else:
-            return render_to_response('404.htm',dictionary,context_instance=RequestContext(request))
+            return render_to_response('registration/volunteer.htm', dictionary, context_instance=RequestContext(request))
+    else:
+        dictionary['input_data'] = VolunteerForm()
+    return render_to_response('registration/volunteer.htm', dictionary, context_instance=RequestContext(request))
+
+

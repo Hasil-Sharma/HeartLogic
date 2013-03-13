@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 11, 2013 at 11:59 PM
+-- Generation Time: Mar 12, 2013 at 08:21 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -139,16 +139,17 @@ CREATE TABLE IF NOT EXISTS `auth_user` (
   `date_joined` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `auth_user`
 --
 
 INSERT INTO `auth_user` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `is_staff`, `is_active`, `is_superuser`, `last_login`, `date_joined`) VALUES
-(1, 'hasil', '', '', 'hasilsharma7@gmail.com', 'pbkdf2_sha256$10000$osNl4eKpPZU4$4B7PGgGJHMpbHSOWnQChVqmh7qejn+6XxCJXpM8y3kw=', 1, 1, 1, '2013-03-11 22:15:24', '2013-03-11 18:55:09'),
+(1, 'hasil', '', '', 'hasilsharma7@gmail.com', 'pbkdf2_sha256$10000$osNl4eKpPZU4$4B7PGgGJHMpbHSOWnQChVqmh7qejn+6XxCJXpM8y3kw=', 1, 1, 1, '2013-03-12 17:10:01', '2013-03-11 18:55:09'),
 (2, 'heart', '', '', 'aadf@dfa.com', 'pbkdf2_sha256$10000$FAruowaUJXBA$Wu6qDFBweM0wkLBd7MtGgyAobi7so7m6M7ZMKkRBxi0=', 0, 1, 0, '2013-03-11 23:05:46', '2013-03-11 23:05:37'),
-(3, '123', '', '', 'aadf@dfa.com', 'pbkdf2_sha256$10000$NicRGlxHGKZy$cCkh9+AAJ3c9OsoSmsqqWeDK0WxgQ08Ds2N2gTqHUu0=', 0, 1, 0, '2013-03-11 23:11:08', '2013-03-11 23:08:36');
+(3, '123', '', '', 'aadf@dfa.com', 'pbkdf2_sha256$10000$NicRGlxHGKZy$cCkh9+AAJ3c9OsoSmsqqWeDK0WxgQ08Ds2N2gTqHUu0=', 0, 1, 0, '2013-03-11 23:11:08', '2013-03-11 23:08:36'),
+(4, 'abc', '', '', 'rtv@fhg.com', 'pbkdf2_sha256$10000$ARlYFXUTHizF$bBDH6a3x/Eq/n2g9lKHK5w38zqGGH6ZafbhYL+inqZU=', 0, 1, 0, '2013-03-12 15:33:24', '2013-03-12 15:31:56');
 
 -- --------------------------------------------------------
 
@@ -203,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `bankhospital_bank` (
   `address_pin` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `bankhospital_bank_25ededc1` (`address_state_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `bankhospital_bank`
@@ -211,7 +212,9 @@ CREATE TABLE IF NOT EXISTS `bankhospital_bank` (
 
 INSERT INTO `bankhospital_bank` (`id`, `uid`, `type`, `name`, `username`, `phone_no`, `email_id`, `address_street_one`, `address_street_two`, `address_city`, `address_state_id`, `address_pin`) VALUES
 (2, '', 1, '', 'hasil', 12435, '', 'adffds', '', '', 1, 1234),
-(3, '', 0, '', '123', 12345, 'aadf@dfa.com', 'dfafadf', '', '', 1, 123);
+(3, '', 0, '', '123', 12345, 'aadf@dfa.com', 'dfafadf', '', '', 1, 123),
+(5, 'hgjhgjh', 0, 'abc', 'abc', 9988, 'rtv@fhg.com', 'snflsf', 'szxcv', 'sfzsfijoia', 1, 110092),
+(6, 'hgjhgjh', 0, 'abc', 'abc', 9988, 'rtv@fhg.com', 'snflsf', 'szxcv', 'sfzsfijoia', 1, 110092);
 
 -- --------------------------------------------------------
 
@@ -283,15 +286,16 @@ CREATE TABLE IF NOT EXISTS `database_pagescontent` (
   `link` varchar(50) NOT NULL,
   `content` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `database_pagescontent`
 --
 
 INSERT INTO `database_pagescontent` (`id`, `name`, `link`, `content`) VALUES
-(1, 'Home', 'home', 'In a densely populated country like ours, it is difficult for the patient to search for a specific blood group in his locality especially with time constraints. This project provides a solution to the problem by providing the patient with all the details of the nearest blood bank or the donor of that very specific blood group through an SMS. All the patient needs to do is to send an SMS query or a request through IVR. While searching for a blood type, priority would be given to those who have already donated blood. The online database acquires data from the blood banks that are also given the access to update this data. The website would be open to all for registration and anyone willing for donating blood can register on the website providing his/her name along with contact details and the last date on which he/she had donated blood so as to keep a track on whether the user is fit for donating blood. Just by a single click all the donors will get the message so that the willing donor can contact the person in need immediately.'),
-(2, 'FAQs', 'faq', 'Content of FAQs page goes here.');
+(1, 'Home', 'home', '   \r\n    <div class="textarea">     \r\n       <br>\r\n        In a densely populated country like ours, it is difficult for the patient to search for a specific blood group in his locality especially with time constraints. This project provides a solution to the problem by providing the patient with all the details of the nearest blood bank or the donor of that very specific blood group through an SMS. All the patient needs to do is to send an SMS query or a request through IVR. While searching for a blood type, priority would be given to those who have already donated blood. The online database acquires data from the blood banks that are also given the access to update this data. The website would be open to all for registration and anyone willing for donating blood can register on the website providing his/her name along with contact details and the last date on which he/she had donated blood so as to keep a track on whether the user is fit for donating blood. Just by a single click all the donors will get the message so that the willing donor can contact the person in need immediately.\r\n        \r\n    </div>'),
+(2, 'FAQs', 'faq', '<div class="textarea">\r\n<h2>FAQs</h2>\r\n    <hr>\r\n    <br /><br />\r\n        <div class="faq_question">\r\n    <div class="faq">\r\n    	\r\n    <h3>Q: Why should we donate blood?</h3>\r\n    \r\n    <p><font color="#000000">asddfhttgfgffyyhghghhhfhgghvgfghvh</font></p>\r\n</div><br>\r\n\r\n <div class="faq">\r\n 	\r\n    <h3>Q: Why should we donate blood?</h3>\r\n    \r\n    <p><font color="#000000">asddfhttgfgffyyhghghhhfhgghvgfghvh</font></p>\r\n</div><br>\r\n <div class="faq">\r\n 	\r\n    <h3>Q: Why should we donate blood?</h3>\r\n     \r\n    <p><font color="#000000">asddfhttgfgffyyhghghhhfhgghvgfghvh</font>\r\n    </p>\r\n \r\n</div></div>\r\n<div class="video">\r\n    <!--\r\n<video width="320" height="240" controls>\r\n  <source src="/static/images/bdc.mp4" type="video/mp4">\r\n  \r\nYour browser does not support the video tag.\r\n</video>--><iframe width="320" height="240"\r\nsrc="http://www.youtube.com/embed/Af0gk_kiGac">\r\n</iframe>\r\n</div>\r\n</div>'),
+(3, 'Contact Us', 'contact_us', '<div class="textarea">\r\n\r\n<h2>CONTACT US</h2>\r\n    <hr>\r\n <p>You can mail us on the given e-mail address:\r\n    <br><br>\r\n    <font style="underline">heartlogicbitspilani@gmail.com</font>\r\n    <br><br>\r\n    or you can drop your letters at the given address:\r\n    <br>\r\n    BITS Pilani\r\n    <br>\r\n    Pilani campus;\r\n    <br>\r\n    Pilani, Rajasthan - 333031\r\n    <br>\r\n    INDIA\r\n</p>\r\n</div>');
 
 -- --------------------------------------------------------
 
@@ -330,7 +334,7 @@ CREATE TABLE IF NOT EXISTS `django_admin_log` (
   PRIMARY KEY (`id`),
   KEY `django_admin_log_403f60f` (`user_id`),
   KEY `django_admin_log_1bb8f392` (`content_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `django_admin_log`
@@ -341,7 +345,20 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `user_id`, `content_type_id
 (2, '2013-03-11 18:59:10', 1, 12, '2', 'BloodGroup object', 1, ''),
 (3, '2013-03-11 19:00:55', 1, 9, '1', 'Punjab', 1, ''),
 (4, '2013-03-11 19:01:19', 1, 10, '1', 'adfas', 1, ''),
-(5, '2013-03-11 19:05:49', 1, 11, '2', 'BDC', 1, '');
+(5, '2013-03-11 19:05:49', 1, 11, '2', 'BDC', 1, ''),
+(6, '2013-03-12 16:06:09', 1, 8, '3', 'contact_us', 1, ''),
+(7, '2013-03-12 16:08:53', 1, 8, '1', 'home', 2, 'Changed content.'),
+(8, '2013-03-12 16:16:45', 1, 8, '3', 'contact_us', 2, 'No fields changed.'),
+(9, '2013-03-12 16:17:45', 1, 8, '2', 'faq', 2, 'Changed content.'),
+(10, '2013-03-12 16:21:24', 1, 8, '1', 'home', 2, 'Changed content.'),
+(11, '2013-03-12 16:22:49', 1, 8, '1', 'home', 2, 'Changed content.'),
+(12, '2013-03-12 16:25:01', 1, 8, '1', 'home', 2, 'Changed content.'),
+(13, '2013-03-12 16:27:06', 1, 8, '2', 'faq', 2, 'Changed content.'),
+(14, '2013-03-12 16:35:41', 1, 8, '3', 'contact_us', 2, 'Changed content.'),
+(15, '2013-03-12 16:38:21', 1, 8, '2', 'faq', 2, 'Changed content.'),
+(16, '2013-03-12 16:39:38', 1, 8, '2', 'faq', 2, 'Changed content.'),
+(17, '2013-03-12 16:40:15', 1, 8, '2', 'faq', 2, 'Changed content.'),
+(18, '2013-03-12 17:01:55', 1, 8, '1', 'home', 2, 'Changed content.');
 
 -- --------------------------------------------------------
 
@@ -399,7 +416,7 @@ CREATE TABLE IF NOT EXISTS `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('18f5b59e5bbee33fb6e126f98c043f9d', 'ZGNlZTgzN2I2ZTIyZWMyMmFjODViNTg1ZTI5ZGE3Yzg1NDI0ZDUxYzqAAn1xAShVCnRlc3Rjb29r\naWVxAlUGd29ya2VkcQNVDV9hdXRoX3VzZXJfaWSKAQNVEl9hdXRoX3VzZXJfYmFja2VuZFUpZGph\nbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmR1Lg==\n', '2013-03-25 23:12:12');
+('1e64154ca296444f5d98e8d160901b93', 'MjZkODk2NjUyNmIyMzE4ZmFiYWJjZTk5ZGYwYzc0OGJiMTg3YTY5MTqAAn1xAShVCnRlc3Rjb29r\naWVVBndvcmtlZHECVRJfYXV0aF91c2VyX2JhY2tlbmRVKWRqYW5nby5jb250cmliLmF1dGguYmFj\na2VuZHMuTW9kZWxCYWNrZW5kVQ1fYXV0aF91c2VyX2lkigEBdS4=\n', '2013-03-26 20:15:42');
 
 -- --------------------------------------------------------
 
@@ -555,8 +572,8 @@ ALTER TABLE `individualrequest_individualrequest`
 -- Constraints for table `request_request`
 --
 ALTER TABLE `request_request`
-  ADD CONSTRAINT `fullfiled_by_id_refs_id_79668291` FOREIGN KEY (`fullfiled_by_id`) REFERENCES `bankhospital_bank` (`id`),
   ADD CONSTRAINT `blood_groups_id_refs_id_47bc9e71` FOREIGN KEY (`blood_groups_id`) REFERENCES `bloodgroup_bloodgroup` (`id`),
+  ADD CONSTRAINT `fullfiled_by_id_refs_id_79668291` FOREIGN KEY (`fullfiled_by_id`) REFERENCES `bankhospital_bank` (`id`),
   ADD CONSTRAINT `request_added_by_bank_id_refs_id_79668291` FOREIGN KEY (`request_added_by_bank_id`) REFERENCES `bankhospital_bank` (`id`);
 
 --
