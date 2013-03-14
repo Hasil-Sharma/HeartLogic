@@ -1,7 +1,22 @@
 {% extends "base.htm" %}
 
 {% block content %}
-	<p> log in successful </p>
-	{{ user_authentication }}
-	{{ user_name }}
+		<a href="/accounts/logout">Logout</a>
+		<a href="/accounts/password_change">Change Password</a>
+		<a href="/accounts/request/">Add Request</a>
+		{% if input_data %}
+			<form method="post" action = "">
+				{% csrf_token %}
+				<table>
+					{% for form in input_data %}
+					<tr>
+						<td>{{form.label_tag}}</td>
+						<td>{{form}}</td>
+						<td>{{form.errors}}</td>
+					</tr>
+					{% endfor %}
+				</table>	
+				<input type="submit" value="Submit" />
+			</form>	
+		{% endif %}
 {% endblock %}

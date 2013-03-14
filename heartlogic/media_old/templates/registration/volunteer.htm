@@ -1,0 +1,29 @@
+{% extends "base.htm" %}
+
+{% block content %}
+{% if input_data and not success and not registered %}
+<form action="" method="post">
+	{% csrf_token %}
+	<table>
+		{% for form in input_data %}
+			<tr>
+				<td>{{ form.label }}</td>
+				<td>{{ form }}</td>
+				{% if form.errors %}
+					<td >{{ form.errors }}</td>
+				{% endif %}
+			</tr>
+		{% endfor %}
+	</table>
+	<input type = "submit" value = "Submit">
+</form>
+{% else %}
+	{% if success %}
+		<p> Successfully Registered on the website </p>
+	{% elif registered %}
+		<p> Sorry The uid already exists in the database </p>
+	{% endif %}
+
+{% endif %}
+
+{% endblock %}

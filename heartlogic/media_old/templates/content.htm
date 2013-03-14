@@ -1,0 +1,64 @@
+{% extends "base.htm" %}
+
+{% block title %} {{ writeup.name }}{% endblock %}
+
+{% block content %}
+ <div class="slideshow">
+        Slideshow goes her
+        </div>
+    {% autoescape off %}
+    <p>{{ writeup.content }}</p>
+    
+   
+    {% endautoescape %}
+    
+    <div class="app">
+    <div>
+        <h2>Next Blood-Donation camp</h2>
+        <form action = '/result_c/' method = "post">
+            {% csrf_token %} 
+           <p>{{ camp_form }}</p>
+        <input type="submit" value = "Search"  class="button_login">
+        </form>
+    </div>
+    <div>
+        <h2>Locate nearest Blood bank</h2>
+        <form action = '/result_b/' method = "post">
+            {% csrf_token %} 
+            <p>{{ bank_form }}</p>
+        <input type="submit" value = "Search" class="button_login">
+        </form>
+    </div>
+    </div>
+    <div class="widgets">
+    <div class="link">
+        <div class="linkimage"><img src="/static/images/man.png" /></div>
+        <div class="linktext">
+        <h3>Ready to Donate?</h3>
+        <p>The need is constant. The gratification is instant and the satisfaction is immense.Donate Now.</p>
+        </div>
+        <div class="anc">
+        <a href="/volunteer_register/">Click here</a>
+        </div>
+    </div>
+    <div class="link">
+        <div class="linkimage"><img src="/static/images/drop.png" /></div>
+        <div class="linktext">
+            <h3>Blood Bank</h3>
+            <p>Collaborate with us by registering here. For already registered blood-banks, Login here.</p>
+        </div>
+        <div class="anc">
+            <a href="/register">Click here</a>
+        </div>
+    </div>
+    <div class="link">
+        <div class="linkimage"><img src="/static/images/sms.png" /></div>
+        <div class="linktext">
+            <h3>For those in need</h3>
+            <p>From me to you, a gift of life.</p>
+        </div>
+        <div class="anc">
+            <a href="">Click here</a>
+        </div>
+    </div>
+{% endblock %}

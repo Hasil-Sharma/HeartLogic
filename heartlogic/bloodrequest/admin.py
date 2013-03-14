@@ -1,5 +1,5 @@
 from django.contrib import admin
-from request.models import Request
+from bloodrequest.models import Request
 
 class RequestAdmin(admin.ModelAdmin):
     pass
