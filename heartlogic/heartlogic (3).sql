@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 14, 2013 at 06:13 AM
+-- Generation Time: Mar 15, 2013 at 06:02 AM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -142,15 +142,16 @@ CREATE TABLE IF NOT EXISTS `auth_user` (
   `date_joined` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `auth_user`
 --
 
 INSERT INTO `auth_user` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `is_staff`, `is_active`, `is_superuser`, `last_login`, `date_joined`) VALUES
-(1, 'hasil', '', '', 'hasil@sh.com', 'pbkdf2_sha256$10000$WOBI8NlAbMxb$iSloiC6F0IBY0aGmXvLaQFqOYsvLtQhW9YtUVl2fv2E=', 1, 1, 1, '2013-03-13 22:58:00', '2013-03-12 23:28:32'),
-(16, 'hasil1', '', '', '', 'pbkdf2_sha256$10000$94Oew3QxzhLU$sZtbBYt4DNwUfp0PZOKs3jqIUJbcmd87fbNuMeRLrRs=', 0, 1, 0, '2013-03-14 05:21:37', '2013-03-13 18:48:36');
+(1, 'hasil', '', '', 'hasil@sh.com', 'pbkdf2_sha256$10000$WOBI8NlAbMxb$iSloiC6F0IBY0aGmXvLaQFqOYsvLtQhW9YtUVl2fv2E=', 1, 1, 1, '2013-03-14 20:14:59', '2013-03-12 23:28:32'),
+(16, 'hasil1', '', '', '', 'pbkdf2_sha256$10000$r0Drkwi1o5NQ$NfQbHuWPPySyW0t8Z509sKtKk1b774xVIPBgPvgrPoA=', 0, 1, 0, '2013-03-15 06:00:50', '2013-03-13 18:48:36'),
+(17, 'hasil2', '', '', '', 'pbkdf2_sha256$10000$PIHi9R2f9BGV$gtnO+vDcN1l2pM58l6q8yQxOWn24dn0qg3+OUxXjAeU=', 0, 1, 0, '2013-03-15 06:01:05', '2013-03-15 03:48:04');
 
 -- --------------------------------------------------------
 
@@ -205,14 +206,15 @@ CREATE TABLE IF NOT EXISTS `bankhospital_bank` (
   `address_pin` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `bankhospital_bank_25ededc1` (`address_state_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `bankhospital_bank`
 --
 
 INSERT INTO `bankhospital_bank` (`id`, `uid`, `type`, `name`, `username_b`, `phone_no`, `email_id`, `address_street_one`, `address_street_two`, `address_city`, `address_state_id`, `address_pin`) VALUES
-(10, '123', 0, '1', 'hasil1', 123, 'aadf@dfa.com', 'adsf', '', 'adsf', 1, 12);
+(10, '123', 0, '1', 'hasil1', 123, 'aadf@dfa.com', 'adsf', '', 'adsf', 1, 12),
+(11, 'dsfad', 1, 'adsfa', 'hasil2', 123, 'dasfa@lkjh.com', 'aasdf', 'adf', 'adsf', 1, 231);
 
 -- --------------------------------------------------------
 
@@ -246,10 +248,16 @@ CREATE TABLE IF NOT EXISTS `bloodgroup_blood` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `bank_id` int(11) NOT NULL,
   `group` longtext NOT NULL,
-  `quantity` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `bank_id` (`bank_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `bloodgroup_blood`
+--
+
+INSERT INTO `bloodgroup_blood` (`id`, `bank_id`, `group`) VALUES
+(1, 10, '(dp1\nS''A+''\np2\nV3\nsS''B+''\np3\nV4\ns.');
 
 -- --------------------------------------------------------
 
@@ -290,14 +298,16 @@ CREATE TABLE IF NOT EXISTS `bloodrequest_request` (
   `priority_level` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `bloodrequest_request_7c622793` (`blood_groups_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `bloodrequest_request`
 --
 
 INSERT INTO `bloodrequest_request` (`id`, `uid`, `request_added_by_bank`, `blood_groups_id`, `units_of_blood_req`, `units_of_blood_given`, `fullfiled`, `fullfiled_by`, `priority_level`) VALUES
-(1, '', '123', 1, 1, NULL, 0, NULL, 1);
+(1, '', '123', 1, 1, NULL, 0, NULL, 1),
+(2, '201303141', '123', 1, 2, NULL, 0, NULL, 1),
+(3, '201303142', '123', 2, 4, NULL, 0, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -444,7 +454,7 @@ CREATE TABLE IF NOT EXISTS `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('3ef5ed4ad4e7281c3657717ff5f28fee', 'YTZkNWNmODBkMGRjNDIzYTI4Y2U3NGFiYjEyOWE4NTYyNWM4NDYxNjqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZFUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmRxAlUN\nX2F1dGhfdXNlcl9pZIoBEHUu\n', '2013-03-28 05:21:37');
+('5d2c0bcf57ead26285bc17ece6e39126', 'YTQxNzkzYzFlOGI1MzNhYWI4N2U0YmQzOGEwMWI0ZWRkOWZiZTkxNzqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKARF1Lg==\n', '2013-03-29 06:01:05');
 
 -- --------------------------------------------------------
 
@@ -476,14 +486,21 @@ CREATE TABLE IF NOT EXISTS `individualrequest_individualrequest` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `contact_no` varchar(50) NOT NULL,
+  `contact_no` int(11) NOT NULL,
   `hospital_where_required_id` int(11) NOT NULL,
-  `individual_request_fullfiled` tinyint(1) NOT NULL,
-  `fullfiled_by_id` int(11) NOT NULL,
+  `blood_group_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `hospital_where_required_id` (`hospital_where_required_id`),
-  KEY `individualrequest_individualrequest_73e49c25` (`fullfiled_by_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  KEY `individualrequest_individualrequest_42a69ad1` (`hospital_where_required_id`),
+  KEY `individualrequest_individualrequest_47ef0749` (`blood_group_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `individualrequest_individualrequest`
+--
+
+INSERT INTO `individualrequest_individualrequest` (`id`, `uid`, `name`, `contact_no`, `hospital_where_required_id`, `blood_group_id`) VALUES
+(1, 'lkjh', 'lkjh', 123, 11, 1),
+(2, '123', 'dfa', 123, 11, 2);
 
 -- --------------------------------------------------------
 
@@ -584,8 +601,8 @@ ALTER TABLE `django_admin_log`
 -- Constraints for table `individualrequest_individualrequest`
 --
 ALTER TABLE `individualrequest_individualrequest`
-  ADD CONSTRAINT `fullfiled_by_id_refs_id_2b480403` FOREIGN KEY (`fullfiled_by_id`) REFERENCES `bankhospital_bank` (`id`),
-  ADD CONSTRAINT `hospital_where_required_id_refs_id_2b480403` FOREIGN KEY (`hospital_where_required_id`) REFERENCES `bankhospital_bank` (`id`);
+  ADD CONSTRAINT `hospital_where_required_id_refs_id_2b480403` FOREIGN KEY (`hospital_where_required_id`) REFERENCES `bankhospital_bank` (`id`),
+  ADD CONSTRAINT `blood_group_id_refs_id_1f277fe3` FOREIGN KEY (`blood_group_id`) REFERENCES `bloodgroup_bloodgroup` (`id`);
 
 --
 -- Constraints for table `volunteer_volunteer`

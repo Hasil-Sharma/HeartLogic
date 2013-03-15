@@ -1,7 +1,6 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from database.models import PagesContent
-from django.http import HttpResponse
 #from django.http import HttpResponseRedirect, Http404
 from heartlogic.forms import SearchForm, RegisterForm, VolunteerForm
 from bankhospital.models import Camp, Bank
@@ -73,6 +72,7 @@ def registerform(request):
     else:
         dictionary['input_data'] = RegisterForm()
         dictionary['input_data_u'] = UserCreationForm()
+        dictionary['value'] = "Register"
     return render_to_response('register.htm',dictionary,context_instance=RequestContext(request))
 
 def volunteerform(request):

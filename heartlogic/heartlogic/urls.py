@@ -4,9 +4,11 @@ from database.views import *
 from heartlogic.views import result_b, result_c, notfound, home, registerform, volunteerform
 from django.contrib import admin
 import useraccounts.urls
+import individualrequest.urls
 admin.autodiscover()
 
-urlpatterns = patterns('',                 
+urlpatterns = patterns('',          
+    url(r'^', include(individualrequest.urls)),       
     url(r'^accounts/', include(useraccounts.urls)),
     url(r'^$', home, {}),
     url(r'^result_b/$', result_b),

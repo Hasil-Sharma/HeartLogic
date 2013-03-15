@@ -1,13 +1,17 @@
+'''
+Created on 15-Mar-2013
+
+@author: Aayush
+'''
 from django.db import models
 from bankhospital.models import Bank
+from bloodgroup.models import BloodGroup
 # Create your models here.
 
-class IndividualRequest(models.Model):
-    #Request coming through website !!!
-    #Confirm it once 
+class IndividualRequest(models.Model): 
     uid = models.CharField(max_length = 50)
     name = models.CharField(max_length = 50)
-    contact_no = models.CharField(max_length = 50)
-    hospital_where_required = models.OneToOneField(Bank)#Hospital to be defined
-    individual_request_fullfiled = models.BooleanField(default = False)
-    fullfiled_by = models.ForeignKey(Bank, related_name = 'individual_request_fullfiling_banks')
+    contact_no = models.IntegerField()
+    hospital_where_required = models.ForeignKey(Bank, limit_choices_to = {'type': 1})#Hospital to be defined
+    blood_group = models.ForeignKey(BloodGroup)
+    

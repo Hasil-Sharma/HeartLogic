@@ -7,7 +7,7 @@
 			<table>
 			{% for form in input_data %}
 				<tr>
-					<td>{{form.label}}</td>
+					<td  style = "text-align: right;">{{form.label}}</td>
 					<td>{{form}}</td>
 					{% if form.errors %}
 						<td>{{form.errors}}</td>
@@ -24,7 +24,7 @@
 					{% endif %}
 				</tr>
 			{% endfor %}
-			<tr><td><input type = "submit" value = "register"></td></tr>
+			<tr><td><input type = "submit" value = {{value}}></td></tr>
 		</table>
 	</form>
 	{% else %}
