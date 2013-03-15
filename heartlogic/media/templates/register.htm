@@ -1,14 +1,34 @@
 {% extends "base.htm" %}
 
 {% block content %}
-	{% if not posted %}
-	<form action = '/save/' method = 'post'>
+{% if not success %}
+	<form action = '' method = 'post'>
 			{% csrf_token %}
-			{{ register_form.as_p }}
-	<input type = "submit" value = "register">
+			<table>
+			{% for form in input_data %}
+				<tr>
+					<td  style = "text-align: right;">{{form.label}}</td>
+					<td>{{form}}</td>
+					{% if form.errors %}
+						<td>{{form.errors}}</td>
+					{% endif %}
+				</tr>
+			{% endfor %}
+			{% for form in input_data_u %}
+				<tr>
+					<td>{{form.label}}</td>
+					<td>{{form}}</td>
+					<td>{{form.span}}</td>
+					{% if form.errors %}
+						<td>{{form.errors}}</td>
+					{% endif %}
+				</tr>
+			{% endfor %}
+			<tr><td><input type = "submit" value = {{value}}></td></tr>
+		</table>
 	</form>
 	{% else %}
-	<p> Done </p>
-	{% endif %}
+	<p>You account has been created with username = {{username}}</p>
+{% endif %}
 {% endblock %}
 

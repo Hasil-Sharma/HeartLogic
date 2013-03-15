@@ -6,9 +6,18 @@
     <!-- Implement scroll bar for the search results -->
     {% if not error %}
     	<p>Number of {{ object_type }} found:{{ search_result|length }}</p>
+        <table>
 	    {% for result in search_result %}
-	        {{ result }}
+	        Name: {{ result.name }}<br/>
+            Street: {{result.address_street_one}}<br/>{{result.address_street_two}}<br/>
+            City: {{result.address_city}}<br/>
+            Phone Number : {{result.phone_no}}<br/>
+            {% ifequal object_type "Blood Camps" %}
+            Date: {{result.date}}<br/>
+            {% endifequal %}
+            `<br/>
 	    {% endfor %}
+        </table>
 	{% else %}
 			<p>Please only enter characters</p>
     {% endif %}
@@ -19,7 +28,7 @@
         <form action = '/result_c/' method = "post">
             {% csrf_token %} 
             {{ camp_form.as_p }}
-        <input type="submit" value = "Search">
+        <input type="submit" value = "Search" class = "button_login">
     	</form>
 	</div>
     <div id="">
@@ -27,40 +36,40 @@
         <form action = '/result_b/' method = "post">
             {% csrf_token %} 
             {{ bank_form.as_p }}
-        <input type="submit" value = "Search">
+        <input type="submit" value = "Search" class = "button_login">
         </form>
 	</div>
    	</div>
 </div>
 <div class="widgets">
-	<div class="link">
-    	<div class="linkimage"><img src="/static/images/man.png" /></div>
-        <div class="linktext">
-        <h3>Ready to Donate?</h3>
-        <p>The need is constant. The gratification is instant and the satisfaction is immense.Donate Now.</p>
+        <div class="link">
+            <div class="linkimage"><img src="/static/images/man.png" /></div>
+            <div class="linktext">
+            <h3>Ready to Donate?</h3>
+            <p>The need is constant. The gratification is instant and the satisfaction is immense.Donate Now.</p>
+            </div>
+            <div class="anc">
+            <a href="/volunteer_register/">Click here</a>
+            </div>
         </div>
-        <div class="anc">
-        <a href="">Click here</a>
+        <div class="link">
+            <div class="linkimage"><img src="/static/images/drop.png" /></div>
+            <div class="linktext">
+                <h3>Blood Bank</h3>
+                <p>Collaborate with us by registering here. For already registered blood-banks, Login here.</p>
+            </div>
+            <div class="anc">
+                <a href="/register/">Click here</a>
+            </div>
         </div>
-    </div>
-	<div class="link">
-    	<div class="linkimage"><img src="/static/images/drop.png" /></div>
-        <div class="linktext">
-            <h3>Blood Bank</h3>
-            <p>Collaborate with us by registering here. For already registered blood-banks, Login here.</p>
-        </div>
-        <div class="anc">
-            <a href="">Click here</a>
-        </div>
-    </div>
-	<div class="link">
-    	<div class="linkimage"><img src="/static/images/sms.png" /></div>
-        <div class="linktext">
-            <h3>For those in need</h3>
-            <p>From me to you, a gift of life.</p>
-        </div>
-        <div class="anc">
-            <a href="">Click here</a>
+        <div class="link">
+            <div class="linkimage"><img src="/static/images/sms.png" /></div>
+            <div class="linktext">
+                <h3>For those in need</h3>
+                <p>From me to you, a gift of life.</p>
+            </div>
+            <div class="anc">
+                <a href="/registerform/">Click here</a>
         </div>
     </div>
 {% endblock %}

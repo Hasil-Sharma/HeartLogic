@@ -128,7 +128,7 @@ INSTALLED_APPS = (
     'bankhospital',
     'bloodgroup',
     'individualrequest',
-    'request',
+    'bloodrequest',
     'volunteer',
     'useraccounts',
 )

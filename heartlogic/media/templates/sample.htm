@@ -1,0 +1,9 @@
+{% extends "base.htm" %}
+{% block content %}
+	{{form}}
+{% endblock %}
+
+<form action="/search/" method="get">
+        name :<input type="text" name="q">
+        <input type="submit" value="Search">
+    </form>

@@ -1,20 +1,17 @@
 from django import forms
 from bankhospital.models import Bank
- 
+from volunteer.models import Volunteer
+from django.forms.extras import SelectDateWidget
+
 class SearchForm(forms.Form):
-    search = forms.CharField(label=(''),max_length=100)
-    
+    search = forms.CharField(label=('Enter City'),max_length=100)
+
 class RegisterForm(forms.ModelForm):
-#    uid = forms.CharField(max_length = 100)
-#    type = forms.CharField(max_length = 10)
-#    name = forms.CharField(max_length = 100)
-#    username = forms.CharField(max_length = 10)
-#    phone_no = forms.IntegerField()
-#    street_one = forms.CharField(max_length = 100)
-#    street_two = forms.CharField(max_length = 100)
-#    pin = forms.IntegerField()
-#    state = forms.CharField(max_length = 10)
-#    
-    password = forms.CharField(max_length= 10 , widget = forms.PasswordInput())
     class Meta:
         model = Bank
+        exclude = ('username_b',)
+
+class VolunteerForm(forms.ModelForm):
+    last_time_donated = forms.DateField(widget = SelectDateWidget())
+    class Meta:
+        model = Volunteer
