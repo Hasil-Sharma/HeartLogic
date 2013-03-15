@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 15, 2013 at 06:02 AM
+-- Generation Time: Mar 15, 2013 at 11:33 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -142,16 +142,19 @@ CREATE TABLE IF NOT EXISTS `auth_user` (
   `date_joined` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `auth_user`
 --
 
 INSERT INTO `auth_user` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `is_staff`, `is_active`, `is_superuser`, `last_login`, `date_joined`) VALUES
-(1, 'hasil', '', '', 'hasil@sh.com', 'pbkdf2_sha256$10000$WOBI8NlAbMxb$iSloiC6F0IBY0aGmXvLaQFqOYsvLtQhW9YtUVl2fv2E=', 1, 1, 1, '2013-03-14 20:14:59', '2013-03-12 23:28:32'),
-(16, 'hasil1', '', '', '', 'pbkdf2_sha256$10000$r0Drkwi1o5NQ$NfQbHuWPPySyW0t8Z509sKtKk1b774xVIPBgPvgrPoA=', 0, 1, 0, '2013-03-15 06:00:50', '2013-03-13 18:48:36'),
-(17, 'hasil2', '', '', '', 'pbkdf2_sha256$10000$PIHi9R2f9BGV$gtnO+vDcN1l2pM58l6q8yQxOWn24dn0qg3+OUxXjAeU=', 0, 1, 0, '2013-03-15 06:01:05', '2013-03-15 03:48:04');
+(1, 'hasil', '', '', 'hasil@sh.com', 'pbkdf2_sha256$10000$WOBI8NlAbMxb$iSloiC6F0IBY0aGmXvLaQFqOYsvLtQhW9YtUVl2fv2E=', 1, 1, 1, '2013-03-15 23:18:56', '2013-03-12 23:28:32'),
+(16, 'hasil1', '', '', '', 'pbkdf2_sha256$10000$r0Drkwi1o5NQ$NfQbHuWPPySyW0t8Z509sKtKk1b774xVIPBgPvgrPoA=', 0, 1, 0, '2013-03-15 23:17:01', '2013-03-13 18:48:36'),
+(17, 'hasil2', '', '', '', 'pbkdf2_sha256$10000$PIHi9R2f9BGV$gtnO+vDcN1l2pM58l6q8yQxOWn24dn0qg3+OUxXjAeU=', 0, 1, 0, '2013-03-15 18:37:13', '2013-03-15 03:48:04'),
+(18, 'bank', '', '', '', 'pbkdf2_sha256$10000$X5dQBOuzU5vt$EtAaX5S6J8TH+tPE0SdsD4U398iFpLElPQD8CU0PQJU=', 0, 1, 0, '2013-03-15 23:18:36', '2013-03-15 18:40:30'),
+(19, 'hospital', '', '', '', 'pbkdf2_sha256$10000$Ofa0v8jJbH0i$uFq/IZ+8pO3RE8jSyuM4LVenUsrc/HVW19dl4V4Gm3I=', 0, 1, 0, '2013-03-15 21:00:42', '2013-03-15 18:41:08'),
+(20, 'admin', 'Blood', 'Bank', 'heartlogic@gmail.com', 'pbkdf2_sha256$10000$pwzpytndz3JN$7s4MGFDLgiz3kVdNLlrm5PFdm1+NpbjVJNA77Lc7c0s=', 1, 1, 0, '2013-03-15 23:31:26', '2013-03-15 23:29:16');
 
 -- --------------------------------------------------------
 
@@ -183,7 +186,17 @@ CREATE TABLE IF NOT EXISTS `auth_user_user_permissions` (
   UNIQUE KEY `user_id` (`user_id`,`permission_id`),
   KEY `auth_user_user_permissions_403f60f` (`user_id`),
   KEY `auth_user_user_permissions_1e014c8f` (`permission_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `auth_user_user_permissions`
+--
+
+INSERT INTO `auth_user_user_permissions` (`id`, `user_id`, `permission_id`) VALUES
+(3, 20, 29),
+(4, 20, 31),
+(1, 20, 32),
+(2, 20, 33);
 
 -- --------------------------------------------------------
 
@@ -206,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `bankhospital_bank` (
   `address_pin` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `bankhospital_bank_25ededc1` (`address_state_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `bankhospital_bank`
@@ -214,7 +227,9 @@ CREATE TABLE IF NOT EXISTS `bankhospital_bank` (
 
 INSERT INTO `bankhospital_bank` (`id`, `uid`, `type`, `name`, `username_b`, `phone_no`, `email_id`, `address_street_one`, `address_street_two`, `address_city`, `address_state_id`, `address_pin`) VALUES
 (10, '123', 0, '1', 'hasil1', 123, 'aadf@dfa.com', 'adsf', '', 'adsf', 1, 12),
-(11, 'dsfad', 1, 'adsfa', 'hasil2', 123, 'dasfa@lkjh.com', 'aasdf', 'adf', 'adsf', 1, 231);
+(11, 'dsfad', 1, 'adsfa', 'hasil2', 123, 'dasfa@lkjh.com', 'aasdf', 'adf', 'adsf', 1, 231),
+(12, '123', 0, 'Bank', 'bank', 123, 'kjhlk@Lkj.com', 'dfa', 'adsf', 'asdf', 1, 123),
+(13, '123', 1, 'hospital', 'hospital', 1234, 'dasfa@lkjh.com', 'adf', 'adf', 'adf', 1, 123);
 
 -- --------------------------------------------------------
 
@@ -230,13 +245,30 @@ CREATE TABLE IF NOT EXISTS `bankhospital_camp` (
   `address_street_one` varchar(50) NOT NULL,
   `address_street_two` varchar(50) NOT NULL,
   `address_city` varchar(50) NOT NULL,
-  `address_state` varchar(50) NOT NULL,
+  `address_state_id` int(11) NOT NULL,
   `address_pin` int(11) NOT NULL,
   `date` datetime NOT NULL,
-  `camp_added_by_id` int(11) NOT NULL,
+  `camp_added_by` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `bankhospital_camp_45cc35cd` (`camp_added_by_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  KEY `bankhospital_camp_25ededc1` (`address_state_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+--
+-- Dumping data for table `bankhospital_camp`
+--
+
+INSERT INTO `bankhospital_camp` (`id`, `name`, `phone_no`, `email_id`, `address_street_one`, `address_street_two`, `address_city`, `address_state_id`, `address_pin`, `date`, `camp_added_by`) VALUES
+(1, 'adf', 234, 'kjhlk@Lkj.com', 'jhg', 'kjhg', 'k', 1, 123, '2013-01-19 06:00:00', 'bank'),
+(2, 'adf', 234, 'kjhlk@Lkj.com', 'jhg', 'kjhg', 'k', 1, 123, '2013-01-19 06:00:00', 'bank'),
+(3, 'adf', 234, 'kjhlk@Lkj.com', 'jhg', 'kjhg', 'k', 1, 123, '2013-01-19 06:00:00', 'bank'),
+(4, 'adf', 234, 'kjhlk@Lkj.com', 'jhg', 'kjhg', 'k', 1, 123, '2013-01-19 06:00:00', 'bank'),
+(5, 'adf', 234, 'kjhlk@Lkj.com', 'jhg', 'kjhg', 'k', 1, 123, '2013-01-19 06:00:00', 'bank'),
+(6, 'adf', 234, 'kjhlk@Lkj.com', 'jhg', 'kjhg', 'k', 1, 123, '2013-01-19 06:00:00', 'bank'),
+(7, 'adf', 234, 'kjhlk@Lkj.com', 'jhg', 'kjhg', 'k', 1, 123, '2013-01-19 06:00:00', 'bank'),
+(8, 'adf', 234, 'kjhlk@Lkj.com', 'jhg', 'kjhg', 'k', 1, 123, '2013-01-19 06:00:00', 'bank'),
+(9, 'adf', 234, 'kjhlk@Lkj.com', 'jhg', 'kjhg', 'k', 1, 123, '2013-01-19 06:00:00', 'bank'),
+(10, 'adsf', 123, 'kjhlk@Lkj.com', 'adsf', '', 'hasil', 1, 12, '2013-03-16 09:51:38', 'bank'),
+(11, 'hasil', 123, '', 'adsf', 'hh', 'sai', 1, 12, '2013-03-16 09:57:36', 'hasil');
 
 -- --------------------------------------------------------
 
@@ -250,14 +282,15 @@ CREATE TABLE IF NOT EXISTS `bloodgroup_blood` (
   `group` longtext NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `bank_id` (`bank_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `bloodgroup_blood`
 --
 
 INSERT INTO `bloodgroup_blood` (`id`, `bank_id`, `group`) VALUES
-(1, 10, '(dp1\nS''A+''\np2\nV3\nsS''B+''\np3\nV4\ns.');
+(1, 10, '(dp1\nS''A+''\np2\nV3\nsS''B+''\np3\nV4\ns.'),
+(9, 12, '(dp1\nS''A+''\np2\nV1\nsS''B+''\np3\nV2\ns.');
 
 -- --------------------------------------------------------
 
@@ -298,16 +331,17 @@ CREATE TABLE IF NOT EXISTS `bloodrequest_request` (
   `priority_level` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `bloodrequest_request_7c622793` (`blood_groups_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `bloodrequest_request`
 --
 
 INSERT INTO `bloodrequest_request` (`id`, `uid`, `request_added_by_bank`, `blood_groups_id`, `units_of_blood_req`, `units_of_blood_given`, `fullfiled`, `fullfiled_by`, `priority_level`) VALUES
-(1, '', '123', 1, 1, NULL, 0, NULL, 1),
-(2, '201303141', '123', 1, 2, NULL, 0, NULL, 1),
-(3, '201303142', '123', 2, 4, NULL, 0, NULL, 1);
+(14, '201303161', '123', 1, 1, NULL, 1, '18', 1),
+(15, '201303161', '123', 1, 1, NULL, 1, '18', 1),
+(16, '201303161', '123', 1, 1, NULL, 1, 'bank', 2),
+(17, '201303161', '123', 1, 1, NULL, 1, 'bank', 2);
 
 -- --------------------------------------------------------
 
@@ -369,7 +403,7 @@ CREATE TABLE IF NOT EXISTS `django_admin_log` (
   PRIMARY KEY (`id`),
   KEY `django_admin_log_403f60f` (`user_id`),
   KEY `django_admin_log_1bb8f392` (`content_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `django_admin_log`
@@ -395,7 +429,11 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `user_id`, `content_type_id
 (17, '2013-03-13 18:47:05', 1, 3, '14', 'hasil2', 3, ''),
 (18, '2013-03-13 18:47:54', 1, 10, '9', '1', 3, ''),
 (19, '2013-03-13 18:47:54', 1, 10, '8', '1', 3, ''),
-(20, '2013-03-13 18:48:00', 1, 3, '15', 'hasil2', 3, '');
+(20, '2013-03-13 18:48:00', 1, 3, '15', 'hasil2', 3, ''),
+(21, '2013-03-15 23:21:45', 1, 11, '10', 'adsf', 1, ''),
+(22, '2013-03-15 23:27:44', 1, 11, '11', 'hasil', 1, ''),
+(23, '2013-03-15 23:29:16', 1, 3, '20', 'admin', 1, ''),
+(24, '2013-03-15 23:30:27', 1, 3, '20', 'admin', 2, 'Changed password, first_name, last_name, email, is_staff and user_permissions.');
 
 -- --------------------------------------------------------
 
@@ -454,7 +492,7 @@ CREATE TABLE IF NOT EXISTS `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('5d2c0bcf57ead26285bc17ece6e39126', 'YTQxNzkzYzFlOGI1MzNhYWI4N2U0YmQzOGEwMWI0ZWRkOWZiZTkxNzqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKARF1Lg==\n', '2013-03-29 06:01:05');
+('37474fadb007a1faf6ae927b30e8d4da', 'MWY3OTA4Njc5M2UwZWEyMWNhZGEwYzg4ZTY5N2MxMzQ2OGQyZTQ4YjqAAn1xAS4=\n', '2013-03-29 23:31:44');
 
 -- --------------------------------------------------------
 
@@ -576,7 +614,7 @@ ALTER TABLE `bankhospital_bank`
 -- Constraints for table `bankhospital_camp`
 --
 ALTER TABLE `bankhospital_camp`
-  ADD CONSTRAINT `camp_added_by_id_refs_id_4b637bfa` FOREIGN KEY (`camp_added_by_id`) REFERENCES `bankhospital_bank` (`id`);
+  ADD CONSTRAINT `address_state_id_refs_id_313b5fe7` FOREIGN KEY (`address_state_id`) REFERENCES `database_state` (`id`);
 
 --
 -- Constraints for table `bloodgroup_blood`

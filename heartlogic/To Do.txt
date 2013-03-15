@@ -1,4 +1,0 @@
-1.Install PIP
-2.Install pip django-user-accounts,https://github.com/pinax/django-user-accounts
-3.Install pip pinax-theme-bootstrap,https://github.com/pinax/pinax-theme-bootstrap
-4.Install pip pinax-theme-bootstrap-account,https://github.com/pinax/pinax-theme-bootstrap-account

@@ -1,15 +1,21 @@
 {% extends "base.htm" %}
 
 {% block content %}
-		<a href="/accounts/logout">Logout</a>
+		<a href = "/accounts/profile">Home</a>
 		<a href="/accounts/password_change">Change Password</a>
 		<a href="/accounts/request/">Add Request</a>
-		<a href = "/accounts/requestget/"> Show Request</a>
+			<a href = "/accounts/requestget/"> Show Request</a>
 		{% if bloodbank %}
-		<a href = "/accounts/bloodstatistic/"> Blood Statistic</a>
-		<a href="/accounts/add_statistics/"> Edit Statistic</a>
+			<a href = "/accounts/bloodstatistic/"> Blood Statistic</a>
+			<a href="/accounts/add_statistics/"> Edit Statistic</a>
 		{% endif %}
-		{% if input_data %}
+		{% if hospital %}
+			<a href="/accounts/fullfiledrequest/">Approved Requests</a>
+		{% endif %}
+			<a href="/accounts/logout">Logout</a>
+		{% if hospital or bloodbank%}
+
+		<!-- Add request form -->
 			<form method="post" action = "">
 				{% csrf_token %}
 				<table>
@@ -21,23 +27,49 @@
 					</tr>
 					{% endfor %}
 				</table>	
-				<input type="submit" value="Submit" />
+				{% if input_data %} <input type="submit" value="Submit" class = "button_login"/> {% endif %}
 			</form>	
-		{% elif pending_requests %}
+			{% if request_saved %}
+				<p> Request Succesfully Saved </p>
+			{% endif %}
+		{% endif %}
+		{% if add_camp %}
+			<form method="post" action = "">
+				{% csrf_token %}
+				<table>
+					{% for form in camp_form %}
+					<tr>
+						<td>{{form.label_tag}}</td>
+						<td>{{form}}</td>
+						<td>{{form.errors}}</td>
+					</tr>
+					{% endfor %}
+				</table>	
+				 <input type="submit" value="Submit" class = "button_login" /> 
+			</form>	
+			{% if camp_saved %}
+				<p> Request Succesfully Saved </p>
+			{% endif %}
+		{% endif %}
+		{% if pending_requests %}
 			{% for request in pending_requests %}
 			<form method = "post" action = "" >
 				{% csrf_token %}
+				<input type = "hidden" name = "req_id" value= {{ request.id }} >
 				<p>Blood Group : {{ request.blood_groups }}</p>
 				<p>Units of Blood : {{ request.units_of_blood_req }}</p>
 				<p>Priority Level : {{ request.priority_level }}</p>
+				{% if request.fullfiled_by %}
+				<p>Fulfilled By : {{request.fullfiled_by}}</p>
+				{% endif %}
 				{% if bloodbank %}
-				<input type = "submit" value = "Fullfill This" class = "button_login"/>
-				{% else %}
-				<input type = "submit" value = "Delete This" class = "button_login"/>
+					<input type = "submit" value = "Fullfill This" name = "operation" class = "button_login"/>
+				{% elif hospital %}
+					<input type = "submit" value = "Delete This" name = "operation" class = "button_login"/>
 				{% endif %}
 			</form>
 			{% endfor %}
-		{% elif blood_statistic %}
+		{% elif blood_statistic and bloodbank%}
 		<br/>
 		<br/>
 			<table>
@@ -54,7 +86,7 @@
 					<tr><td>{{blood}}: <input type="text" name= {{blood}} ></td></tr>
 				{% endfor %}
 			</table>
-			<input type = "submit" value = "Submit"/>
+			<input type = "submit" value = "Submit" class = "button_login"/>
 		</form>
 		{% endif %}
 

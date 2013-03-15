@@ -1,5 +1,6 @@
 from django.db import models
 from database.models import State
+
 # Create your models here.
 
 class Bank(models.Model):
@@ -29,10 +30,10 @@ class Camp(models.Model):
 	address_street_one = models.CharField(max_length = 50)
 	address_street_two = models.CharField(max_length = 50, blank = True)
 	address_city = models.CharField(max_length = 50)
-	address_state = models.CharField(max_length = 50)
+	address_state = models.ForeignKey(State)
 	address_pin = models.IntegerField()
 	date = models.DateTimeField()
-	camp_added_by = models.ForeignKey(Bank)
+	camp_added_by = models.CharField(max_length = 50)
 	
 	def __unicode__(self):
 		return self.name

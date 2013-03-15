@@ -5,9 +5,9 @@ Created on 11-Mar-2013
 '''
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
-from useraccounts.forms import RequestForm
+from useraccounts.forms import RequestForm, CampForm
 from django.template import RequestContext
-from bankhospital.models import Bank
+from bankhospital.models import Bank, Camp
 from bloodrequest.models import Request
 from bloodgroup.models import BloodGroup, Blood
 from datetime import date
@@ -26,17 +26,26 @@ def id_generator(bldgrpid, units):
         r_id += str(date.today().day)
     r_id += str(bldgrpid)
     return r_id
-    
+
+
+
 @login_required
 def profile(request):
     dictionary = {}
     if Bank.objects.get(username_b = request.user).type == 0:
         dictionary['bloodbank'] = True
+    else:
+        dictionary['hospital'] = True
+    dictionary["hidden"] = True
     return render_to_response('interface/profile.htm', dictionary, context_instance=RequestContext(request))
  
 @login_required
 def add_request(request):
     dictionary = {}
+    if Bank.objects.get(username_b = request.user).type == 0:
+        dictionary['bloodbank'] = True
+    else:
+        dictionary['hospital'] = True
     if request.method == "POST":
         input_data = RequestForm(request.POST)
         dictionary['input_data'] = input_data
@@ -46,36 +55,63 @@ def add_request(request):
             input_data_model.uid = id_generator(input_data_model.blood_groups.id, input_data_model.units_of_blood_req)
             input_data_model.save()
             print "Model Saved"
-            return render_to_response('sample.htm')
+            dictionary['request_saved']= True
             
     else:
         dictionary['input_data'] = RequestForm()
+    dictionary["hidden"] = True
     return render_to_response('interface/profile.htm', dictionary, context_instance=RequestContext(request))
 
 @login_required
 def get_request(request):
     dictionary = {}
+    if Bank.objects.get(username_b = request.user).type == 0:
+        dictionary['bloodbank'] = True
+    else:
+        dictionary['hospital'] = True
     if request.method == "POST":
-        pass
+        if request.POST['operation'] == "Delete This":
+            req = Request.objects.get(pk = request.POST['req_id'])
+            req.delete()
+        else:
+            req = Request.objects.get(pk = request.POST['req_id'])
+            req.fullfiled = 1
+            print req.fullfiled
+            req.fullfiled_by = Bank.objects.get(username_b = request.user).username_b
+            print req.fullfiled_by
+            req.save()
     requests = Request.objects.filter(fullfiled = False)
     dictionary['pending_requests'] = requests
+    dictionary["hidden"] = True
     return render_to_response('interface/profile.htm', dictionary, context_instance=RequestContext(request))
 
 @login_required
 def show_statistics(request):
     dictionary = {}
+    if Bank.objects.get(username_b = request.user).type == 0:
+        dictionary['bloodbank'] = True
+    else:
+        dictionary['hospital'] = True
     dictionary['blood_statistic'] = True
     dictionary['blood_groups'] = BloodGroup.objects.all()
-    pickled_data = str(Blood.objects.get(bank = Bank.objects.get(username_b = str(request.user))).group)
-    print str(pickled_data)
-    dictionary['statistics'] = dict(cPickle.loads(pickled_data))
-    print dictionary['statistics']
-    dictionary['bloodbank'] = True
+    try:
+        pickled_data = str(Blood.objects.get(bank = Bank.objects.get(username_b = str(request.user))).group)
+        print str(pickled_data)
+        dictionary['statistics'] = dict(cPickle.loads(pickled_data))
+        print dictionary['statistics']
+    except:
+        pass
+    dictionary["hidden"] = True
     return render_to_response('interface/profile.htm', dictionary, context_instance=RequestContext(request))
+
 
 @login_required
 def add_statistics(request):
     dictionary = {}
+    if Bank.objects.get(username_b = request.user).type == 0:
+        dictionary['bloodbank'] = True
+    else:
+        dictionary['hospital'] = True
     if request.method == "POST":
         content = {}
         dictionary['blood_groups'] = BloodGroup.objects.all()
@@ -97,9 +133,18 @@ def add_statistics(request):
         dictionary['add_stat'] = True
         dictionary['blood_groups'] = BloodGroup.objects.all()
     dictionary['bloodbank'] = True
+    dictionary["hidden"] = True
     return render_to_response('interface/profile.htm', dictionary, context_instance=RequestContext(request))
     
-    
-    
-    
-    
+
+@login_required
+def get_fullfiled_request(request):
+    dictionary = {}
+    if Bank.objects.get(username_b = request.user).type == 0:
+        dictionary['bloodbank'] = True
+    else:
+        dictionary['hospital'] = True
+    requests = Request.objects.filter(fullfiled = 1)
+    dictionary['pending_requests'] = requests
+    dictionary["hidden"] = True
+    return render_to_response('interface/profile.htm', dictionary, context_instance=RequestContext(request))

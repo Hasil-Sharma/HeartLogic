@@ -5,7 +5,10 @@ class BankAdmin(admin.ModelAdmin):
     pass
 
 class CampAdmin(admin.ModelAdmin):
-    pass
+    exclude = ('camp_added_by',)
+    def save_model(self, request, obj, form, change):
+        obj.camp_added_by = request.user
+        obj.save()
 
 admin.site.register(Bank)
-admin.site.register(Camp)
+admin.site.register(Camp, CampAdmin)

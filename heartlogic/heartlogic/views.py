@@ -21,7 +21,7 @@ def result_b(request):
     bank_form = SearchForm(request.POST)
     if bank_form.is_valid():
         search_city = bank_form.cleaned_data['search']
-        dictionary['search_result'] = Bank.objects.filter(address_city__contains = search_city)
+        dictionary['search_result'] = Bank.objects.filter(address_city = search_city)
     else:
         dictionary['error'] = True
     dictionary['bank_form'] = SearchForm()
@@ -35,7 +35,8 @@ def result_c(request):
     camp_form = SearchForm(request.POST)
     if camp_form.is_valid():
         search_city = camp_form.cleaned_data['search']
-        dictionary['search_result'] = Camp.objects.filter(address_city__contains = search_city)
+        dictionary['search_result'] = Camp.objects.filter(address_city = search_city)
+        print dictionary['search_result']
     else:
         dictionary['error'] = True
     dictionary['bank_form'] = SearchForm()

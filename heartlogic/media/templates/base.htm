@@ -23,6 +23,7 @@
 <div class="heading">
     <div class="logo">
     </div>
+    {% if not hidden %}
     <div class="menu">
     	<ul>
             <li><a href="/home">Home</a></li>
@@ -31,6 +32,16 @@
             <li><a href="/contact_us">Contact Us</a></li>
        	</ul>
         <br /><br /><br />
+    {% else %}
+        <div class="menu">
+        <ul>
+            <li><a href="/accounts/profile">Home</a></li>
+            <li><a href="/accounts/logout">Logout</a></li>
+            <li><a href="/accounts/password_change">Change Password</a></li>
+            <li><a href="/contact_us">Contact Us</a></li>
+        </ul>
+        <br /><br /><br />
+    {% endif %}
         <div class="tagline">
         </div>
     </div>

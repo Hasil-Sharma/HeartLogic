@@ -4,7 +4,7 @@ from volunteer.models import Volunteer
 from django.forms.extras import SelectDateWidget
 
 class SearchForm(forms.Form):
-    search = forms.CharField(label=(''),max_length=100)
+    search = forms.CharField(label=('Enter City'),max_length=100)
 
 class RegisterForm(forms.ModelForm):
     class Meta:
